@@ -1,0 +1,24 @@
+baseURL: https://blog.realsangil.net/
+languageCode: ko-kr
+title: "Realsangil"
+theme: "PaperMod"
+params:
+  defaultTheme: "light"
+  disableThemeToggle: "true"
+  ShowReadingTime: true 
+  ShowToc: true
+  TocOpen: true
+  ShowBreadCrumbs: true
+  ShowPostNavLinks: true
+  cover:
+    responsiveImages: true
+menu:
+  main:
+    - identifier: posts
+      name: posts
+      url: /posts/
+      weight: 10
+    - identifier: tags
+      name: tags
+      url: /tags/
+      weight: 20
