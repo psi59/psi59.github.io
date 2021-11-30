@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Concurrency와 Parallelism의 차이"
 tags: ["golang", "concurrency", "parallelism"]
 date: 2020-02-06T09:30:00+09:00
@@ -15,7 +14,7 @@ Go언어 주요 개발자 중 한명인 '롭 파이크'는 말을 직역하면 '
 
 ## 동시성(Concurrency)
 
-| ![concurrency](/images/2020-02-06-concurrency-parallelism/concurrency.jpeg){: .center-image} |
+| ![concurrency](/images/2020-02-06-concurrency-parallelism/concurrency.jpeg) |
 | :--: |
 | Concurrency |
 
@@ -38,7 +37,7 @@ Go언어 주요 개발자 중 한명인 '롭 파이크'는 말을 직역하면 '
 
 ## 병렬성(Parallelism)
 
-| ![parallelism](/images/2020-02-06-concurrency-parallelism/parallelism.jpeg){: .center-image} |
+| ![parallelism](/images/2020-02-06-concurrency-parallelism/parallelism.jpeg) |
 | :--: |
 | Parallelism |
 

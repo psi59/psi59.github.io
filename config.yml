@@ -2,7 +2,10 @@ baseURL: https://realsangil.github.io
 languageCode: ko-kr
 title: "Realsangil"
 theme: "PaperMod"
+googleAnalytics: UA-132761342-2
 params:
+  env: production
+  author: "박상일"
   defaultTheme: "light"
   disableThemeToggle: "true"
   ShowReadingTime: true 
@@ -12,6 +15,19 @@ params:
   ShowPostNavLinks: true
   cover:
     responsiveImages: true
+  comments: true
+  homeInfoParams:
+    Title: "Realsangil"
+    Content: >
+        여행과 음악을 좋아하는 Go backend 개발자입니다.
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/realsangil"
+    - name: email
+      url: "mailto:tkddlf59@gmail.com"
+    - name: RSS
+      url: "index.xml"
 menu:
   main:
     - identifier: posts
