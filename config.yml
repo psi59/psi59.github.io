@@ -13,6 +13,7 @@ params:
   TocOpen: true
   ShowBreadCrumbs: true
   ShowPostNavLinks: true
+  ShowCodeCopyButtons: true
   cover:
     responsiveImages: true
   comments: true
