@@ -6,7 +6,9 @@ cover:
     image: "/images/covers/golang.png"
 ---
 
-오늘은 Go언어의 init function에 대해 얘기해보려 합니다.
+Go언어의 init function의 동작과 우선 순위에 대해 정리한 내용입니다.
+
+<!--more-->
 
 ## init 함수?
 `init` 함수는 이름에서 느껴지듯이 무언가를 초기화하는 함수입니다. 

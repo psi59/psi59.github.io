@@ -2,12 +2,19 @@ baseURL: https://blog.realsangil.net
 languageCode: ko-kr
 title: "Realsangil"
 theme: "PaperMod"
-googleAnalytics: UA-132761342-2
+googleAnalytics: G-MMTYEB98J6
+taxonomies:
+      category: categories
+      tag: tags
+markup:
+  goldmark:
+      renderer:
+          unsafe: true
 params:
   env: production
   author: "박상일"
   defaultTheme: "light"
-  disableThemeToggle: "true"
+  disableThemeToggle: "true"  
   ShowReadingTime: true 
   ShowToc: true
   TocOpen: true

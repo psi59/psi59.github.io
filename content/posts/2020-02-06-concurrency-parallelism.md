@@ -5,6 +5,7 @@ date: 2020-02-06T09:30:00+09:00
 ---
 
 최근에 golang을 처음부터 다시 공부하면서 헷갈렸던 Concurrency와 Parallelism의 차이점과 관계에 대해 개인적으로 공부한 내용을 간단한 예시와 함께 정리한 글입니다.
+
 <!-- more -->
 
 > "Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once."  

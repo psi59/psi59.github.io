@@ -9,7 +9,6 @@ tags: ["license"]
 따라서, 좀 더 자세한 내용을 원하신다면 *[오픈소스 라이선스 가이드](https://www.olis.or.kr/license/licenseGuide.do)를 한번 정독하시는 것을 추천합니다.*
 
 <!--more-->
----
 
 ## 1. 소프트웨어 지적재산권과 오픈소스 라이센스
 
