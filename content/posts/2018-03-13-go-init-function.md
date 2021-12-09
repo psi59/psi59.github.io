@@ -2,6 +2,8 @@
 title: "Go의 init 함수 간단 소개!!"
 tags: ['golang']
 date: 2018-03-13T07:52:02+09:00
+aliases:
+    - "/2018/03/go-init-function/"
 cover:
     image: "/images/covers/golang.png"
 ---

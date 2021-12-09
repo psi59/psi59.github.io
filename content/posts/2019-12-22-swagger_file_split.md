@@ -1,7 +1,7 @@
 ---
 title: "Swagger 파일 분리하여 관리하기"
 date: 2019-12-22T16:36:37+09:00
-tags: ["openapi", "swagger"]
+tags: ["openapi", "documentation"]
 aliases:
   - "/2019/12/swagger_file_split/"
 cover:

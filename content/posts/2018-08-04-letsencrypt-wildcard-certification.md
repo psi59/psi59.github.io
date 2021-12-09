@@ -1,6 +1,6 @@
 ---
 title: "Let's Encrypt 와일드카드 인증서 발급해보기"
-tags: ['ssl', 'https', 'letsencrypt', 'wildcard']
+tags: ['https', 'letsencrypt']
 date: 2018-08-04T11:41:00+09:00
 aliases:
   - "/2018/08/04/letsencrypt-wildcard-certification"

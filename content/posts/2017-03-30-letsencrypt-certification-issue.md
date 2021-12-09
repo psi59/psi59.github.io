@@ -1,6 +1,6 @@
 ---
 title: "Let's Encrypt로 https 서비스 하기"
-tags: ["ssl", 'tls', 'https', 'nginx', 'letsencrypt']
+tags: ['https', 'letsencrypt']
 date: 2017-03-30T20:08:07+09:00
 aliases:
   - "/2017/03/letsencrypt-certification-issue"

@@ -1,6 +1,6 @@
 ---
 title: "Let's Encrypt 와일드카드 인증서 갱신해보기"
-tags: ['letsencrypt', 'nginx', 'wildcard', 'ssl', 'https']
+tags: ['https', 'letsencrypt']
 date: 2018-10-31T20:29:00+09:00
 aliases:
   - "/2018/10/letsencrypt-wildcard-certification-renew"
