@@ -2,6 +2,7 @@
 layout: post
 title: "mitmproxy 설치하기"
 tags: ["devtools"]
+date: 2020-08-09T09:00:00+09:00
 aliases:
   - "/2020/08/mitmproxy-installation/"
 ---
