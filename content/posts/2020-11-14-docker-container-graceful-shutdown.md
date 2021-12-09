@@ -2,6 +2,8 @@
 title: "도커 컨테이너로 배포된 서버를 우아하게 종료하기✨"
 tags: ["docker", "golang"]
 date: 2020-11-14T09:30:00+09:00
+aliases:
+  - "/2020/11/docker-container-graceful-shutdown/"
 cover:
   image: "/images/covers/docker.png"
   caption: "출처: docker.com"

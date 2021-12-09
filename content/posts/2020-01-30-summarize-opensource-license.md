@@ -2,6 +2,8 @@
 title: "OpenSource 라이센스 간단 정리"
 date: 2020-01-30T07:25:11+09:00
 tags: ["license"]
+aliaes:
+  - "/2020/01/summarize-opensource-license/"
 ---
 
 이 포스트는 오픈소스에 대한 이해를 돕고자 [OLIS](https://www.olis.or.kr/)의 [오픈소스 라이선스 가이드](https://www.olis.or.kr/license/licenseGuide.do)를 베이스로 수집한 정보를 간단하게 정리한 내용입니다.
