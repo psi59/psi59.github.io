@@ -1,0 +1,243 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>Let's Encrypt 와일드카드 인증서 갱신해보기 | Realsangil</title>
+<meta name=keywords content="letsencrypt,nginx,wildcard,ssl,https">
+<meta name=description content="Let's Encrypt 와일드카드 인증서 갱신해보기 - Realsangil">
+<meta name=author content="박상일">
+<link rel=canonical href=https://blog.realsangil.net/posts/2018-10-31-letsencrypt-wildcard-certification-renew/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css integrity="sha256-yIlj/i15RiAA/Q+xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://blog.realsangil.net/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://blog.realsangil.net/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://blog.realsangil.net/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://blog.realsangil.net/apple-touch-icon.png>
+<link rel=mask-icon href=https://blog.realsangil.net/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.90.0">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MMTYEB98J6"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-MMTYEB98J6',{anonymize_ip:!1})}</script>
+<meta property="og:title" content="Let's Encrypt 와일드카드 인증서 갱신해보기">
+<meta property="og:description" content>
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.realsangil.net/posts/2018-10-31-letsencrypt-wildcard-certification-renew/">
+<meta property="og:image" content="https://blog.realsangil.net/images/covers/letsencrypt.jpg"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2018-10-31T20:29:00+09:00">
+<meta property="article:modified_time" content="2018-10-31T20:29:00+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://blog.realsangil.net/images/covers/letsencrypt.jpg">
+<meta name=twitter:title content="Let's Encrypt 와일드카드 인증서 갱신해보기">
+<meta name=twitter:description content>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://blog.realsangil.net/posts/"},{"@type":"ListItem","position":3,"name":"Let's Encrypt 와일드카드 인증서 갱신해보기","item":"https://blog.realsangil.net/posts/2018-10-31-letsencrypt-wildcard-certification-renew/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Let's Encrypt 와일드카드 인증서 갱신해보기","name":"Let\u0027s Encrypt 와일드카드 인증서 갱신해보기","description":"","keywords":["letsencrypt","nginx","wildcard","ssl","https"],"articleBody":"안녕하세요 이번 포스트에서는 지난번 게시한 Let’s Encrypt 와일드카드 인증서 발급해보기에서 받은 wildcard 인증서를 갱신하는 방법에 대해서 이야기 해보려합니다.\n인증서 갱신 기본적으로 certbot을 이용해 발급받은 인증서를 갱신하는 것은 매우 쉽습니다.\n$ certbot-auto renew 위의 커맨드를 입력하시면 일반적으로 certbot이 인증서를 갱신을 진행하며 이 단계에서 별 무리없이 갱신이 끝날 것입니다.\n$ certbot-auto renew Requesting to rerun /usr/local/bin/certbot-auto with root privileges... Saving debug log to /var/log/letsencrypt/letsencrypt.log - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Processing /etc/letsencrypt/renewal/lalaworks.com.conf - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Cert is due for renewal, auto-renewing... Could not choose appropriate plugin: The manual plugin is not working; there may be problems with your existing configuration. The error was: PluginError('An authentication script must be provided with --manual-auth-hook when using the manual plugin non-interactively.',) Attempting to renew cert (lalaworks.com) from /etc/letsencrypt/renewal/lalaworks.com.conf produced an unexpected error: The manual plugin is not working; there may be problems with your existing configuration. The error was: PluginError('An authentication script must be provided with --manual-auth-hook when using the manual plugin non-interactively.',). Skipping. All renewal attempts failed. The following certs could not be renewed: /etc/letsencrypt/live/lalaworks.com/fullchain.pem (failure) - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - All renewal attempts failed. The following certs could not be renewed: /etc/letsencrypt/live/lalaworks.com/fullchain.pem (failure) - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 1 renew failure(s), 0 parse failure(s) 하지만 저는 커맨드를 입력해 실행해봤지만 에러가 발생했습니다. 에러가 발생하는 이유는 제가 발급받은 인증서는 route53을 이용해서 받았기 때문에 인증서를 갱신할때 도메인 유효성을 체크하기 위해 route53에 세팅된 값을 체크해야하는데 그 값을 확인하지 못해기 때문에 에러가 발생했습니다.\n여기서 잠깐 Let's Encrypt가 어떻게 도메인 유효성 검사를 하는지 간단하게 설명 드리겠습니다.\n출처: https://letsencrypt.org/how-it-works/\n사용자의 서버에서 인증서를 갱신하거나 발급할 도메인에 Let's Encrypt에서 지정한 값을 리턴할 수 있도록 세팅합니다. 그 다음 Let's Encrypt가 그 도메인에 세팅된 값을 체크하고 값이 맞다면 인증을 완료합니다.\nroute53 플러그인?? Let's Encrypt에서 route53을 공식적으로 지원하지만 route53을 이용해서 인증서를 갱신하기 위해서는 certbot-dns-route53 플러그인이 필요합니다. 플러그인은 아래의 커맨드로 설치하실 수 있습니다.\npip3 install certbot-dns-route53 플러그인을 사용하기 위해서는 --dns-route53 옵션을 주면 됩니다.\n재시도.. certbot-auto renew --dns-route53 Saving debug log to /var/log/letsencrypt/letsencrypt.log - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Processing /etc/letsencrypt/renewal/lalaworks.com.conf - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Cert is due for renewal, auto-renewing... Could not choose appropriate plugin: The requested dns-route53 plugin does not appear to be installed Attempting to renew cert (lalaworks.com) from /etc/letsencrypt/renewal/lalaworks.com.conf produced an unexpected error: The requested dns-route53 plugin does not appear to be installed. Skipping. All renewal attempts failed. The following certs could not be renewed: /etc/letsencrypt/live/lalaworks.com/fullchain.pem (failure) 그렇죠 역시나 기대를 저버리지 않죠? 쉬운일 하나 없네요 ㅎㅎ 에러 로그를 보니 플러그인이 없다네요.. 아니 설치했자나!!!!!!!!!!!!!!!!!!!!!!!\nsudo cat /var/log/letsencrypt/letsencrypt.log 이런 하찮은 에러따위에 줄 시간 따윈 없으니 에러로그를 확인해보겠습니다. Let's Encrypt의 로그를 보려면 위의 커맨드로 로그를 확인해봅시다.\n... 2018-10-31 11:43:33,708:DEBUG:certbot.renewal:Traceback was: Traceback (most recent call last): File \"/opt/eff.org/certbot/venv/local/lib/python2.7/site-packages/certbot/renewal.py\", line 430, in handle_renewal_request main.renew_cert(lineage_config, plugins, renewal_candidate) File \"/opt/eff.org/certbot/venv/local/lib/python2.7/site-packages/certbot/main.py\", line 1191, in renew_cert installer, auth = plug_sel.choose_configurator_plugins(config, plugins, \"certonly\") File \"/opt/eff.org/certbot/venv/local/lib/python2.7/site-packages/certbot/plugins/selection.py\", line 237, in choose_configurator_plugins diagnose_configurator_problem(\"authenticator\", req_auth, plugins) File \"/opt/eff.org/certbot/venv/local/lib/python2.7/site-packages/certbot/plugins/selection.py\", line 341, in diagnose_configurator_problem raise errors.PluginSelectionError(msg) PluginSelectionError: The requested dns-route53 plugin does not appear to be installed ... 로그를 대략적으로 보면 아까 메시지와 비슷하게 플러그인을 못찾아서 발생한거 같습니다. 근데 여기서 자세히 보면 certbot은 virtualenv를 사용하여 파이썬환경을 분리해서 사용하고 있다는걸 알 수 있습니다 virtualenv를 간략하게 설명드리자면 프로젝트별로 파이썬환경을 분리하고자 만들어진것입니다. 자세한 내용은 구글신에게 물어보시면 더 잘 이해하실 수 있습니다.\n다시 본론으로 돌아와 요약해보자면, 저는 시스템 파이썬에 플러그인을 설치했기 때문에 분리된 환경을 사용하는 certbot은 당연히 플러그인이 없다고 에러를 발생시키는겁니다. 그럼 이제 저 분리된 공간에 플러그인을 설치해보겠습니다.\nsudo /opt/eff.org/certbot/venv/bin/pip install certbot-dns-route53 위의 커맨드를 실행하여 플러그인을 설치하고 다시 갱신 커맨드를 실행해보겠습니다.\n$ certbot-auto renew --dns-route53 ... Attempting to renew cert (lalaworks.com) from /etc/letsencrypt/renewal/lalaworks.com.conf produced an unexpected error: An error occurred (AccessDenied) when calling the ListHostedZones operation: User: arn:aws:sts::00000000000:assumed-role/AmazonLightsailInstanceRole/i-000000xxxxxx is not authorized to perform: route53:ListHostedZones To use certbot-dns-route53, configure credentials as described at https://boto3.readthedocs.io/en/latest/guide/configuration.html#best-practices-for-configuring-credentials and add the necessary permissions for Route53 access.. Skipping. All renewal attempts failed. The following certs could not be renewed: /etc/letsencrypt/live/lalaworks.com/fullchain.pem (failure) ... 또 다시 에러가 발생했네요 메시지를 보면 aws route53을 awscli를 통해 제어해야 하는데 awscli에 route53를 이용하기 위한 인증정보를 세팅해야 한다는 것을 알 수 있습니다.\nAWS의 IAM를 이용해서 발급받으시면 됩니다. 액세스 키를 발급받으시고 아래의 커맨드를 실행하시고 발급받으신 키를 입력하시면 됩니다.\nsudo aws configure 이 때 반드시 awscli를 관리자 권한으로 실행해주셔야 합니다 왜냐하면 awscli는 리눅스 계정별로 인증정보를 관리하게 되는데 관리자 권한 없이 커맨드를 실행하면 현재 사용중인 리눅스 계정에 aws 인증정보가 생성되어 관리자 권한으로 실행되는 certbot이 인증정보를 제대로 읽지 못해 같은 에러가 발생하게 됩니다.\n이런것도 싫다 하시면 아래와 같이 config파일을 생성해주시면 됩니다.\nsudo vi /root/.aws/config [default] aws_access_key_id= aws_secret_access_key= 이제 준비가 된거 같으니 다시 갱신을 시도해보겠습니다.\n$ certbot-auto renew --dns-route53 ... Cert is due for renewal, auto-renewing... Found credentials in shared credentials file: ~/.aws/credentials Plugins selected: Authenticator dns-route53, Installer None Renewing an existing certificate Performing the following challenges: dns-01 challenge for lalaworks.com dns-01 challenge for lalaworks.com Waiting for verification... Cleaning up challenges ... Congratulations, all renewals succeeded. The following certs have been renewed: /etc/letsencrypt/live/lalaworks.com/fullchain.pem (success) 오 성공했습니다. 이 맛에 개발하는거 같내요 성취감 굳ㅎㅎ\n마무리하며… 친절히 메일로 만료가 얼마 남지 않았다는걸 알려줬지만 미루고 미루던 인증서를 갱신했고 포스트도 작성했습니다.\n이번 포스팅을 통해서 let’s encrypt가 어떻게 인증서를 갱신하는지 대략적인 플로우도 알 수 있었던거 같습니다. 다음 포스팅에서는 갱신 자동화와 인증서 배포에 대해서 한번 알아보도록 해보겠습니다.\n이 포스트에 잘못된 정보나 궁금하신점이 있으시다면 tkddlf59@gmail.com으로 메일을 주시거나 댓글로 알려주시기 바랍니다. 여러분의 따뜻한 관심이 절실히 필요한 때입니다.\n참고자료  https://github.com/certbot/certbot/issues/4875 https://letsencrypt.org/how-it-works/ ","wordCount":"1060","inLanguage":"en","image":"https://blog.realsangil.net/images/covers/letsencrypt.jpg","datePublished":"2018-10-31T20:29:00+09:00","dateModified":"2018-10-31T20:29:00+09:00","author":{"@type":"Person","name":"박상일"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.realsangil.net/posts/2018-10-31-letsencrypt-wildcard-certification-renew/"},"publisher":{"@type":"Organization","name":"Realsangil","logo":{"@type":"ImageObject","url":"https://blog.realsangil.net/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://blog.realsangil.net accesskey=h title="Realsangil (Alt + H)">Realsangil</a>
+<span class=logo-switches>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://blog.realsangil.net/posts/ title=posts>
+<span>posts</span>
+</a>
+</li>
+<li>
+<a href=https://blog.realsangil.net/tags/ title=tags>
+<span>tags</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://blog.realsangil.net>Home</a>&nbsp;»&nbsp;<a href=https://blog.realsangil.net/posts/>Posts</a></div>
+<h1 class=post-title>
+Let's Encrypt 와일드카드 인증서 갱신해보기
+</h1>
+<div class=post-meta><span title="2018-10-31 20:29:00 +0900 +0900">October 31, 2018</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;박상일
+</div>
+</header>
+<figure class=entry-cover><img loading=lazy src=https://blog.realsangil.net/images/covers/letsencrypt.jpg alt>
+</figure><div class=toc>
+<details open>
+<summary accesskey=c title="(Alt + C)">
+<span class=details>Table of Contents</span>
+</summary>
+<div class=inner><ul>
+<li>
+<a href=#%ec%9d%b8%ec%a6%9d%ec%84%9c-%ea%b0%b1%ec%8b%a0 aria-label="인증서 갱신">인증서 갱신</a></li>
+<li>
+<a href=#route53-%ed%94%8c%eb%9f%ac%ea%b7%b8%ec%9d%b8 aria-label="route53 플러그인??">route53 플러그인??</a></li>
+<li>
+<a href=#%ec%9e%ac%ec%8b%9c%eb%8f%84 aria-label=재시도..>재시도..</a></li>
+<li>
+<a href=#%eb%a7%88%eb%ac%b4%eb%a6%ac%ed%95%98%eb%a9%b0 aria-label=마무리하며&amp;hellip;>마무리하며&mldr;</a></li>
+<li>
+<a href=#%ec%b0%b8%ea%b3%a0%ec%9e%90%eb%a3%8c aria-label=참고자료>참고자료</a>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<div class=post-content><p>안녕하세요 이번 포스트에서는 지난번 게시한 <a href=https://realsangil.github.io/http/18-08-04-letsencrypt>Let’s Encrypt 와일드카드 인증서 발급해보기</a>에서 받은 wildcard 인증서를 갱신하는 방법에 대해서 이야기 해보려합니다.</p>
+<h2 id=인증서-갱신>인증서 갱신<a hidden class=anchor aria-hidden=true href=#인증서-갱신>#</a></h2>
+<p>기본적으로 <code>certbot</code>을 이용해 발급받은 인증서를 갱신하는 것은 매우 쉽습니다.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ certbot-auto renew
+</code></pre></div><p>위의 커맨드를 입력하시면 일반적으로 <code>certbot</code>이 인증서를 갱신을 진행하며 이 단계에서 별 무리없이 갱신이 끝날 것입니다.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ certbot-auto renew
+Requesting to rerun /usr/local/bin/certbot-auto with root privileges...
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Processing /etc/letsencrypt/renewal/lalaworks.com.conf
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Cert is due <span style=color:#66d9ef>for</span> renewal, auto-renewing...
+Could not choose appropriate plugin: The manual plugin is not working; there may be problems with your existing configuration.
+The error was: PluginError<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;An authentication script must be provided with --manual-auth-hook when using the manual plugin non-interactively.&#39;</span>,<span style=color:#f92672>)</span>
+Attempting to renew cert <span style=color:#f92672>(</span>lalaworks.com<span style=color:#f92672>)</span> from /etc/letsencrypt/renewal/lalaworks.com.conf produced an unexpected error: The manual plugin is not working; there may be problems with your existing configuration.
+The error was: PluginError<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;An authentication script must be provided with --manual-auth-hook when using the manual plugin non-interactively.&#39;</span>,<span style=color:#f92672>)</span>. Skipping.
+All renewal attempts failed. The following certs could not be renewed:
+  /etc/letsencrypt/live/lalaworks.com/fullchain.pem <span style=color:#f92672>(</span>failure<span style=color:#f92672>)</span>
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+All renewal attempts failed. The following certs could not be renewed:
+  /etc/letsencrypt/live/lalaworks.com/fullchain.pem <span style=color:#f92672>(</span>failure<span style=color:#f92672>)</span>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+<span style=color:#ae81ff>1</span> renew failure<span style=color:#f92672>(</span>s<span style=color:#f92672>)</span>, <span style=color:#ae81ff>0</span> parse failure<span style=color:#f92672>(</span>s<span style=color:#f92672>)</span>
+</code></pre></div><p>하지만 저는 커맨드를 입력해 실행해봤지만 에러가 발생했습니다. 에러가 발생하는 이유는 제가 발급받은 인증서는 route53을 이용해서 받았기 때문에 인증서를 갱신할때 도메인 유효성을 체크하기 위해 route53에 세팅된 값을 체크해야하는데 그 값을 확인하지 못해기 때문에 에러가 발생했습니다.</p>
+<p>여기서 잠깐 <code>Let's Encrypt</code>가 어떻게 도메인 유효성 검사를 하는지 간단하게 설명 드리겠습니다.</p>
+<p><img loading=lazy src=https://letsencrypt.org/images/howitworks_authorization.png alt="let&amp;rsquo;s encrypt의 domain validation">
+출처: <a href=https://letsencrypt.org/how-it-works/>https://letsencrypt.org/how-it-works/</a></p>
+<p>사용자의 서버에서 인증서를 갱신하거나 발급할 도메인에 <code>Let's Encrypt</code>에서 지정한 값을 리턴할 수 있도록 세팅합니다. 그 다음 <code>Let's Encrypt</code>가 그 도메인에 세팅된 값을 체크하고 값이 맞다면 인증을 완료합니다.</p>
+<h2 id=route53-플러그인>route53 플러그인??<a hidden class=anchor aria-hidden=true href=#route53-플러그인>#</a></h2>
+<p><code>Let's Encrypt</code>에서 route53을 공식적으로 지원하지만 route53을 이용해서 인증서를 갱신하기 위해서는 <code>certbot-dns-route53</code> 플러그인이 필요합니다. 플러그인은 아래의 커맨드로 설치하실 수 있습니다.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>pip3 install certbot-dns-route53
+</code></pre></div><p>플러그인을 사용하기 위해서는 <code>--dns-route53</code> 옵션을 주면 됩니다.</p>
+<h2 id=재시도>재시도..<a hidden class=anchor aria-hidden=true href=#재시도>#</a></h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>certbot-auto renew --dns-route53
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Processing /etc/letsencrypt/renewal/lalaworks.com.conf
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Cert is due <span style=color:#66d9ef>for</span> renewal, auto-renewing...
+Could not choose appropriate plugin: The requested dns-route53 plugin does not appear to be installed
+Attempting to renew cert <span style=color:#f92672>(</span>lalaworks.com<span style=color:#f92672>)</span> from /etc/letsencrypt/renewal/lalaworks.com.conf produced an unexpected error: The requested dns-route53 plugin does not appear to be installed. Skipping.
+All renewal attempts failed. The following certs could not be renewed:
+  /etc/letsencrypt/live/lalaworks.com/fullchain.pem <span style=color:#f92672>(</span>failure<span style=color:#f92672>)</span>
+</code></pre></div><p>그렇죠 역시나 기대를 저버리지 않죠? 쉬운일 하나 없네요 ㅎㅎ 에러 로그를 보니 플러그인이 없다네요.. 아니 설치했자나!!!!!!!!!!!!!!!!!!!!!!!</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo cat /var/log/letsencrypt/letsencrypt.log
+</code></pre></div><p>이런 하찮은 에러따위에 줄 시간 따윈 없으니 에러로그를 확인해보겠습니다. <code>Let's Encrypt</code>의 로그를 보려면 위의 커맨드로 로그를 확인해봅시다.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>...
+2018-10-31 11:43:33,708:DEBUG:certbot.renewal:Traceback was:
+Traceback <span style=color:#f92672>(</span>most recent call last<span style=color:#f92672>)</span>:
+  File <span style=color:#e6db74>&#34;/opt/eff.org/certbot/venv/local/lib/python2.7/site-packages/certbot/renewal.py&#34;</span>, line 430, in handle_renewal_request
+    main.renew_cert<span style=color:#f92672>(</span>lineage_config, plugins, renewal_candidate<span style=color:#f92672>)</span>
+  File <span style=color:#e6db74>&#34;/opt/eff.org/certbot/venv/local/lib/python2.7/site-packages/certbot/main.py&#34;</span>, line 1191, in renew_cert
+    installer, auth <span style=color:#f92672>=</span> plug_sel.choose_configurator_plugins<span style=color:#f92672>(</span>config, plugins, <span style=color:#e6db74>&#34;certonly&#34;</span><span style=color:#f92672>)</span>
+  File <span style=color:#e6db74>&#34;/opt/eff.org/certbot/venv/local/lib/python2.7/site-packages/certbot/plugins/selection.py&#34;</span>, line 237, in choose_configurator_plugins
+    diagnose_configurator_problem<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;authenticator&#34;</span>, req_auth, plugins<span style=color:#f92672>)</span>
+  File <span style=color:#e6db74>&#34;/opt/eff.org/certbot/venv/local/lib/python2.7/site-packages/certbot/plugins/selection.py&#34;</span>, line 341, in diagnose_configurator_problem
+    raise errors.PluginSelectionError<span style=color:#f92672>(</span>msg<span style=color:#f92672>)</span>
+PluginSelectionError: The requested dns-route53 plugin does not appear to be installed
+...
+</code></pre></div><p>로그를 대략적으로 보면 아까 메시지와 비슷하게 플러그인을 못찾아서 발생한거 같습니다. 근데 여기서 자세히 보면 certbot은 <code>virtualenv</code>를 사용하여 파이썬환경을 분리해서 사용하고 있다는걸 알 수 있습니다 <code>virtualenv</code>를 간략하게 설명드리자면 프로젝트별로 파이썬환경을 분리하고자 만들어진것입니다. 자세한 내용은 구글신에게 물어보시면 더 잘 이해하실 수 있습니다.</p>
+<p>다시 본론으로 돌아와 <strong>요약해보자면,</strong> 저는 시스템 파이썬에 플러그인을 설치했기 때문에 분리된 환경을 사용하는 certbot은 당연히 플러그인이 없다고 에러를 발생시키는겁니다. 그럼 이제 저 분리된 공간에 플러그인을 설치해보겠습니다.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo /opt/eff.org/certbot/venv/bin/pip install certbot-dns-route53
+</code></pre></div><p>위의 커맨드를 실행하여 플러그인을 설치하고 다시 갱신 커맨드를 실행해보겠습니다.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ certbot-auto renew --dns-route53
+...
+Attempting to renew cert <span style=color:#f92672>(</span>lalaworks.com<span style=color:#f92672>)</span> from /etc/letsencrypt/renewal/lalaworks.com.conf produced an unexpected error: An error occurred <span style=color:#f92672>(</span>AccessDenied<span style=color:#f92672>)</span> when calling the ListHostedZones operation: User: arn:aws:sts::00000000000:assumed-role/AmazonLightsailInstanceRole/i-000000xxxxxx is not authorized to perform: route53:ListHostedZones
+To use certbot-dns-route53, configure credentials as described at https://boto3.readthedocs.io/en/latest/guide/configuration.html#best-practices-for-configuring-credentials and add the necessary permissions <span style=color:#66d9ef>for</span> Route53 access.. Skipping.
+All renewal attempts failed. The following certs could not be renewed:
+  /etc/letsencrypt/live/lalaworks.com/fullchain.pem <span style=color:#f92672>(</span>failure<span style=color:#f92672>)</span>
+...
+</code></pre></div><p>또 다시 에러가 발생했네요 메시지를 보면 aws route53을 awscli를 통해 제어해야 하는데 awscli에 route53를 이용하기 위한 인증정보를 세팅해야 한다는 것을 알 수 있습니다.</p>
+<p>AWS의 <code>IAM</code>를 이용해서 발급받으시면 됩니다.
+액세스 키를 발급받으시고 아래의 커맨드를 실행하시고 발급받으신 키를 입력하시면 됩니다.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo aws configure
+</code></pre></div><p>이 때 반드시 awscli를 관리자 권한으로 실행해주셔야 합니다 왜냐하면 awscli는 리눅스 계정별로 인증정보를 관리하게 되는데 관리자 권한 없이 커맨드를 실행하면 현재 사용중인 리눅스 계정에 aws 인증정보가 생성되어 관리자 권한으로 실행되는 certbot이 인증정보를 제대로 읽지 못해 같은 에러가 발생하게 됩니다.</p>
+<p>이런것도 싫다 하시면 아래와 같이 config파일을 생성해주시면 됩니다.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo vi /root/.aws/config
+
+<span style=color:#f92672>[</span>default<span style=color:#f92672>]</span>
+aws_access_key_id<span style=color:#f92672>=</span>&lt;access_key_id&gt;
+aws_secret_access_key<span style=color:#f92672>=</span>&lt;access_secret_key&gt;
+</code></pre></div><p>이제 준비가 된거 같으니 다시 갱신을 시도해보겠습니다.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ certbot-auto renew --dns-route53
+...
+Cert is due <span style=color:#66d9ef>for</span> renewal, auto-renewing...
+Found credentials in shared credentials file: ~/.aws/credentials
+Plugins selected: Authenticator dns-route53, Installer None
+Renewing an existing certificate
+Performing the following challenges:
+dns-01 challenge <span style=color:#66d9ef>for</span> lalaworks.com
+dns-01 challenge <span style=color:#66d9ef>for</span> lalaworks.com
+Waiting <span style=color:#66d9ef>for</span> verification...
+Cleaning up challenges
+... 
+
+Congratulations, all renewals succeeded. The following certs have been renewed:
+  /etc/letsencrypt/live/lalaworks.com/fullchain.pem <span style=color:#f92672>(</span>success<span style=color:#f92672>)</span>
+</code></pre></div><p>오 성공했습니다. 이 맛에 개발하는거 같내요 성취감 굳ㅎㅎ</p>
+<h2 id=마무리하며>마무리하며&mldr;<a hidden class=anchor aria-hidden=true href=#마무리하며>#</a></h2>
+<p>친절히 메일로 만료가 얼마 남지 않았다는걸 알려줬지만 미루고 미루던 인증서를 갱신했고 포스트도 작성했습니다.<br>
+이번 포스팅을 통해서 let&rsquo;s encrypt가 어떻게 인증서를 갱신하는지 대략적인 플로우도 알 수 있었던거 같습니다. 다음 포스팅에서는 갱신 자동화와 인증서 배포에 대해서 한번 알아보도록 해보겠습니다.</p>
+<p>이 포스트에 잘못된 정보나 궁금하신점이 있으시다면 <a href=mailto:tkddlf59@gmail.com>tkddlf59@gmail.com</a>으로 메일을 주시거나 댓글로 알려주시기 바랍니다. 여러분의 따뜻한 관심이 절실히 필요한 때입니다.</p>
+<h2 id=참고자료>참고자료<a hidden class=anchor aria-hidden=true href=#참고자료>#</a></h2>
+<ul>
+<li><a href=https://github.com/certbot/certbot/issues/4875>https://github.com/certbot/certbot/issues/4875</a></li>
+<li><a href=https://letsencrypt.org/how-it-works/>https://letsencrypt.org/how-it-works/</a></li>
+</ul>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://blog.realsangil.net/tags/letsencrypt/>letsencrypt</a></li>
+<li><a href=https://blog.realsangil.net/tags/nginx/>nginx</a></li>
+<li><a href=https://blog.realsangil.net/tags/wildcard/>wildcard</a></li>
+<li><a href=https://blog.realsangil.net/tags/ssl/>ssl</a></li>
+<li><a href=https://blog.realsangil.net/tags/https/>https</a></li>
+</ul>
+<nav class=paginav>
+<a class=prev href=https://blog.realsangil.net/posts/2019-12-22-swagger_file_split/>
+<span class=title>« Prev Page</span>
+<br>
+<span>Swagger 파일 분리하여 관리하기</span>
+</a>
+<a class=next href=https://blog.realsangil.net/posts/2018-08-04-letsencrypt-wildcard-certification/>
+<span class=title>Next Page »</span>
+<br>
+<span>Let's Encrypt 와일드카드 인증서 발급해보기</span>
+</a>
+</nav>
+</footer><script src=https://utteranc.es/client.js repo=realsangil/realsangil.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2021 <a href=https://blog.realsangil.net>Realsangil</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script>
+</body>
+</html>
