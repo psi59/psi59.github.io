@@ -2,7 +2,7 @@
 title: "Concurrency와 Parallelism의 차이"
 tags: ["golang", "concurrency", "parallelism"]
 date: 2020-02-06T09:30:00+09:00
-aliaes:
+aliases:
   - "/2020/02/concurrency-parallelism/"
 ---
 

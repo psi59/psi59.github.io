@@ -2,7 +2,7 @@
 title: "OpenSource 라이센스 간단 정리"
 date: 2020-01-30T07:25:11+09:00
 tags: ["license"]
-aliaes:
+aliases:
   - "/2020/01/summarize-opensource-license/"
 ---
 
