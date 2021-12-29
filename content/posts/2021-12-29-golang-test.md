@@ -1,5 +1,5 @@
 ---
-title: "Golang TestMain란?"
+title: "Golang TestMain이란?"
 tags: ["golang", "testing"]
 date: 2021-12-29T20:34:00+09:00
 cover:
