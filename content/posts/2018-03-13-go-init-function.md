@@ -165,7 +165,7 @@ called first_exam in 'exam/exam.go'
 그 느낌이 온다면.. 이 포스트는 200% 성공했습니다.
 
 사실 그냥 개발할 수도 있지만 이런 특수 함수들을 잘 활용해서 개발하시면 좀 더 편하게 개발할 수 있을거 같습니다.
-위의 예제는 [golang-init-func(repository)](https://github.com/realsangil/golang-init-func)에서 확인하실 수 있습니다.
+위의 예제는 [golang-init-func(repository)](https://github.com/psi59/golang-init-func)에서 확인하실 수 있습니다.
 
 위의 내용에서 궁금하신 점이나 질문 혹은 잘못된 부분이 있으시면 댓글이나 메일을 보내주세요.    
  

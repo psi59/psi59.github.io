@@ -10,7 +10,7 @@ cover:
 
 <!--more-->
 
-안녕하세요 이번 포스트에서는 지난번 게시한 [Let’s Encrypt 와일드카드 인증서 발급해보기](https://realsangil.github.io/http/18-08-04-letsencrypt)에서 받은 wildcard 인증서를 갱신하는 방법에 대해서 이야기 해보려합니다.  
+안녕하세요 이번 포스트에서는 지난번 게시한 [Let’s Encrypt 와일드카드 인증서 발급해보기](https://psi59.github.io/http/18-08-04-letsencrypt)에서 받은 wildcard 인증서를 갱신하는 방법에 대해서 이야기 해보려합니다.  
 
 ## 인증서 갱신
 

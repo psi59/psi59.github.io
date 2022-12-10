@@ -171,7 +171,7 @@ Found the following certs:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
-적용하는 부분은 [Let’s Encrypt로 https 서비스 하기](https://realsangil.github.io/http/17-03-31-letsencrypt)를 참고하시면 될거 같습니다.
+적용하는 부분은 [Let’s Encrypt로 https 서비스 하기](https://psi59.github.io/http/17-03-31-letsencrypt)를 참고하시면 될거 같습니다.
 
 ## Conclusion
 인증서를 발급받으면서 간단하게 도메인 구조에 대해서도 다시 공부하게 됐고 인증서도 발급받고 아주 유익한 시간이었습니다.

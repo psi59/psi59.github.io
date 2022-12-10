@@ -1,6 +1,6 @@
-baseURL: https://blog.realsangil.net
+baseURL: https://psi59.github.io
 languageCode: ko-kr
-title: "Realsangil"
+title: "Sangil's Blog"
 theme: "PaperMod"
 googleAnalytics: G-MMTYEB98J6
 taxonomies:
@@ -25,13 +25,13 @@ params:
     responsiveImages: true
   comments: true
   homeInfoParams:
-    Title: "Realsangil"
+    Title: "Sangil's Blog"
     Content: >
         여행과 음악을 좋아하는 Go backend 개발자입니다.
 
   socialIcons:
     - name: github
-      url: "https://github.com/realsangil"
+      url: "https://github.com/psi59"
     - name: email
       url: "mailto:tkddlf59@gmail.com"
     - name: RSS

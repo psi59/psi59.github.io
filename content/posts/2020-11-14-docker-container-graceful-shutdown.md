@@ -220,7 +220,7 @@ docker에서는 `ENTRYPOINT`와 `CMD`를 **exec-form(JSON array)**, **shell-form
 ## 정리
 이번 포스트에서는 Docker 컨테이너로 만든 Go 서버의 우아하게 종료하는 방법에 대해서 알아 보았습니다. 
 핵심은 서버가 Graceful Shutdown을 지원하더라도 Dockerfile을 작성할 때 `ENTRYPOINT`와 `CMD`를 exec-form으로 작성해야만 SIGNAL을 수신 받을 수 있다는 것입니다.
-해당 코드는 [Graceful Shutdown이 적용된 Go HTTP server · GitHub](https://gist.github.com/realsangil/3c6d71367a3f3f03d170c4655ee055a4)에서 확인가능합니다.
+해당 코드는 [Graceful Shutdown이 적용된 Go HTTP server · GitHub](https://gist.github.com/psi59/3c6d71367a3f3f03d170c4655ee055a4)에서 확인가능합니다.
 
 ## References
 - [Why Your Dockerized Application Isn’t Receiving Signals · Homepage of Hynek Schlawack](https://hynek.me/articles/docker-signals/)

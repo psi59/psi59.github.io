@@ -14,7 +14,7 @@ Swagger로 API 문서를 작성하다 보면 스팩 파일(swagger.yaml)이 너�
 
 ## 준비하기
 
-우선, 우리는 스펙파일을 준비해야 합니다. 이번 포스트는 openapi v3를 기준으로 작성할것이며 v2도 전체적인 흐름은 같으니 따라해보셔도 문제가 없습니다. 먼저, 이미 스펙파일을 가지고 계신 분은 가지고 계신 스펙파일을 이용하시면되지만 저는 [petstore.yaml](https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml)을 조금 [수정한 파일](https://github.com/realsangil/swagger_file_split_example/blob/master/edited_petstore.yaml)을 사용해 나눠보려 합니다.
+우선, 우리는 스펙파일을 준비해야 합니다. 이번 포스트는 openapi v3를 기준으로 작성할것이며 v2도 전체적인 흐름은 같으니 따라해보셔도 문제가 없습니다. 먼저, 이미 스펙파일을 가지고 계신 분은 가지고 계신 스펙파일을 이용하시면되지만 저는 [petstore.yaml](https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml)을 조금 [수정한 파일](https://github.com/psi59/swagger_file_split_example/blob/master/edited_petstore.yaml)을 사용해 나눠보려 합니다.
 
 ```yaml
 openapi: "3.0.0"
@@ -504,7 +504,7 @@ paths:
 
  위의 예제들을 보면 두서없이 파일을 나눈것 처럼 보입니다. 이것은 단지 독자들에게 다양한 형태의 참조를 보여드리기 위해서 이런 형태를 만들어 보았습니다. 물론 실제로 사용할 때는 좀 더 일관성 있는 형태의 구조로 사용하는 것이 좋습니다.
 
- 위의 예제들은 [이곳](https://github.com/realsangil/swagger_file_split_example)에 업로드 했으니 참조하시면 될 것 같습니다.
+ 위의 예제들은 [이곳](https://github.com/psi59/swagger_file_split_example)에 업로드 했으니 참조하시면 될 것 같습니다.
 
 ### 추가적인 팁
 저는 이렇게 만든 파일들을 배포할 때는 전체 파일을 배포하기보다는 하나의 파일로 묶어서 배포합니다. 
