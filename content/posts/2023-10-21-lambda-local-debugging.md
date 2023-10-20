@@ -1,7 +1,7 @@
 ---
 title: "AWS Lambda 로컬 디버깅 (provided.al2 Runtime)"
 tags: ["golang", "docker", "aws", "lambda"]
-date: 2023-10-20T23:00:07+09:00
+date: 2023-10-21T03:05:07+09:00
 ---
 
 이 포스트는 2023-12-31부터 `go1.x` 런타임이 deprecate 됨에 따라 `provided.al2` 런타임으로 마이그레이트한 람다 함수를 로컬에서 디버깅하는 방법에 대해 포스팅한 내용임.

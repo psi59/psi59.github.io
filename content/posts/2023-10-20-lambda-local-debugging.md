@@ -1,8 +1,7 @@
 ---
 title: "AWS Lambda 로컬 디버깅 (Go1.x Runtime)"
 tags: ["golang", "aws", "lambda"]
-date: 2023-10-20T13:18:01
-draft: true
+date: 2023-10-20T23:00:07+09:00
 ---
 
 Go1.x 런타임을 사용한 AWS Lambda function을 로컬에서 디버깅하는 방법에 대한 포스팅입니다.
